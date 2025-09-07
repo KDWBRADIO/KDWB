@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDWB NA ŻYWO – Player</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Gwarancja poprawnego wyświetlania playera */
+        #radio-co-player {
+            width: 100% !important;
+            height: 150px !important;
+            min-height: 150px !important;
+            margin: 15px 0 !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background: #1a1a1a;
+        }
+        
+        /* Stary styl kontenera */
+        .radio-container {
+            width: 95%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+        }
+        
+        /* Backup player - ukryty domyślnie */
+        #backup-player {
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-link">
+            <img src="KDWB LOGO.png" alt="KDWB Radio" class="logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html#radio">Radio</a></li>
+                <li><a href="index.html#ramowka">Ramówka</a></li>
+                <li><a href="index.html#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+            <h2 class="player-title">KDWB NA ŻYWO</h2>
+            
+            <!-- Oficjalny player Radio.co -->
+            <div id="radio-co-player">
+                <script src="https://embed.radio.co/player/18f5220.js"></script>
+            </div>
+</body>
+</html>
