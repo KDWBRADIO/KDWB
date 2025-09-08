@@ -1,11 +1,170 @@
 <!DOCTYPE html>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>30 KDWB - Coming Soon</title>
+    <title>30 KDWB - Oficjalna Lista Przebojów</title>
+    <meta name="description" content="Oficjalna lista przebojów 30 KDWB - głosuj na swoje ulubione hity rap i EDM! Sprawdź aktualne notowanie i historię listy.">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Style specyficzne dla 30 KDWB */
+        .kdwb-header {
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            color: #000;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .kdwb-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+        
+        .kdwb-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        .notowanie-number {
+            background: #000;
+            color: #00ffff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+        
+        /* Lista przebojów */
+        .song-list {
+            counter-reset: song-counter;
+        }
+        
+        .song-item {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .song-item:hover {
+            background: rgba(255, 0, 255, 0.05);
+            transform: translateX(5px);
+        }
+        
+        .song-position {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #00ffff;
+            text-align: center;
+            position: relative;
+        }
+        
+        .song-position::before {
+            counter-increment: song-counter;
+            content: counter(song-counter);
+        }
+        
+        .song-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .song-artists {
+            font-weight: 600;
+            color: #ff00ff;
+            font-size: 1.1rem;
+        }
+        
+        .song-title {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .song-vote {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .vote-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .vote-hop {
+            background: linear-gradient(135deg, #00ff00, #00cccc);
+            color: #000;
+        }
+        
+        .vote-bec {
+            background: linear-gradient(135deg, #ff0000, #ff00ff);
+            color: #fff;
+        }
+        
+        .vote-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px currentColor;
+        }
+        
+        /* Top 3 specjalne style */
+        .song-item:nth-child(-n+3) .song-position {
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        .song-item:nth-child(1) .song-position {
+            color: gold;
+        }
+        
+        .song-item:nth-child(2) .song-position {
+            color: silver;
+        }
+        
+        .song-item:nth-child(3) .song-position {
+            color: #cd7f32; /* Brąz */
+        }
+        
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .kdwb-title {
+                font-size: 2.5rem;
+            }
+            
+            .song-item {
+                grid-template-columns: 50px 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .song-position {
+                font-size: 1.8rem;
+            }
+            
+            .song-vote {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .vote-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,24 +173,147 @@
         </a>
         <nav>
             <ul>
-                <li><a href="index.html#radio">Radio</a></li>
-                <li><a href="index.html#ramowka">Ramówka</a></li>
+                <li><a href="radio.html">Radio</a></li>
+                <li><a href="30kdwb.html" class="special-button-nav">30 KDWB</a></li>
+                <li><a href="ramowka.html">Ramówka</a></li>
+                <li><a href="harmonogram.html">Harmonogram</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
         </nav>
+        <a href="player.html" class="play-button">POSŁUCHAJ <span>▶</span></a>
     </header>
 
-    <main>
+    <div class="kdwb-header">
+        <div class="container">
+            <h1 class="kdwb-title">30 KDWB</h1>
+            <p class="kdwb-subtitle">OFICJALNA LISTA PRZEBOJÓW</p>
+            <div class="notowanie-number">Notowanie nr: 001</div>
+        </div>
+    </div>
+
+    <main class="fade-in">
         <section class="content-section">
-            <h2>30 KDWB</h2>
             <div class="content-box">
-                <p>Ta sekcja jest w przygotowaniu. Wróć wkrótce!</p>
-                <a href="index.html" class="special-button">Powrót do strony głównej</a>
+                <h2>Aktualne notowanie</h2>
+                <p>Głosuj na swoje ulubione hity! Co tydzień nowa lista najpopularniejszych utworów w KDWB.</p>
+                
+                <div class="song-list">
+                    <!-- Przykładowe utwory - możesz je zastąpić swoimi -->
+                    <div class="song-item">
+                        <div class="song-position"></div>
+                        <div class="song-details">
+                            <div class="song-artists">Mata / Skolim / Khaid</div>
+                            <h3 class="song-title">Kamikaze</h3>
+                            <div class="song-vote">
+                                <button class="vote-btn vote-hop">HOP 👍</button>
+                                <button class="vote-btn vote-bec">BEC 👎</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-position"></div>
+                        <div class="song-details">
+                            <div class="song-artists">Calvin Harris / Clementine Douglas</div>
+                            <h3 class="song-title">Blessings</h3>
+                            <div class="song-vote">
+                                <button class="vote-btn vote-hop">HOP 👍</button>
+                                <button class="vote-btn vote-bec">BEC 👎</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-position"></div>
+                        <div class="song-details">
+                            <div class="song-artists">Dimitri Vegas / David Guetta / Loreen</div>
+                            <h3 class="song-title">Pum Pum</h3>
+                            <div class="song-vote">
+                                <button class="vote-btn vote-hop">HOP 👍</button>
+                                <button class="vote-btn vote-bec">BEC 👎</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dodaj więcej utworów tutaj -->
+                    <div class="song-item">
+                        <div class="song-position"></div>
+                        <div class="song-details">
+                            <div class="song-artists">Don Toliver / Doja Cat</div>
+                            <h3 class="song-title">Lose My Mind</h3>
+                            <div class="song-vote">
+                                <button class="vote-btn vote-hop">HOP 👍</button>
+                                <button class="vote-btn vote-bec">BEC 👎</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-position"></div>
+                        <div class="song-details">
+                            <div class="song-artists">Nathan Dawe / Shayan</div>
+                            <h3 class="song-title">Over You</h3>
+                            <div class="song-vote">
+                                <button class="vote-btn vote-hop">HOP 👍</button>
+                                <button class="vote-btn vote-bec">BEC 👎</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="#" class="special-button">ZGŁOŚ PROPOZYCJĘ</a>
+                    <a href="#" class="special-button">ZOBACZ ARCHIWUM</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="content-box">
+                <h2>Jak działa 30 KDWB?</h2>
+                <ul>
+                    <li><strong>Głosowanie:</strong> Każdy słuchacz może głosować na ulubione utwory</li>
+                    <li><strong>Notowanie:</strong> Lista aktualizowana co tydzień w piątek</li>
+                    <li><strong>Nagrody:</strong> Najlepsi słuchacze otrzymują nagrody</li>
+                    <li><strong>Premiery:</strong> Exclusive premierowe utwory</li>
+                </ul>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2025 KDWB Radio</p>
+    <footer class="fade-in">
+        <div class="social-media">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">TikTok</a>
+            <a href="#" class="social-link">YouTube</a>
+            <a href="#" class="social-link">Facebook</a>
+        </div>
+        <p>© 2025 KDWB Radio - Oficjalna Lista Przebojów</p>
     </footer>
+
+    <script>
+    $(document).ready(function() {
+        // Efekt fade-in
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.05 });
+
+        fadeElements.forEach(el => observer.observe(el));
+        
+        // Symulacja głosowania
+        $('.vote-btn').click(function(e) {
+            e.preventDefault();
+            alert('Dziękujemy za głos! Głosowanie zostało zarejestrowane.');
+            // Tutaj możesz dodać prawdziwą logikę głosowania
+        });
+    });
+    </script>
 </body>
 </html>
